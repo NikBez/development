@@ -1,12 +1,14 @@
 import requests
 
-lang = 'en'
-location = input('Location: ')
-if location == 'Череповец':
-    lang = 'ru'
+locations = ('London', 'SVO', 'Cherepovets')
 
-url = f"https://wttr.in/{location}?nMTq&lang={lang}"
+params = {
+    "nMTq": "",
+    "lang": "ru"
+}
 
-response = requests.get(url)
-response.raise_for_status()
-print(response.text)
+for loc in locations:
+    url = f"https://wttr.in/{loc}"
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    print(response.text)
